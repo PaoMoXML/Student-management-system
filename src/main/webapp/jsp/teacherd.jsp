@@ -4,14 +4,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>教师个人中心</title>
-<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script> 
-<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css" />
-<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css" />
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <%--css部分--%>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-table.min.css">
+
+    <%--js部分--%>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table-zh-CN.js"></script>
 </head>
 <body>
-
+<script type="text/javascript">
+$(document).ready(function(){
+	var url = "${pageContext.request.contextPath}/teacherd/teacherD"
+	var teaid = "${sessionScope.teacher.stuid}";
+	var Info = {"teaid":teaid};
+	var jsonData = JSON.stringify(Info);
+	
+	$.ajax({
+		type:"post",
+		url:url,
+		data:jsonData,
+		dataType:"json",
+        contentType : "application/json;charset=UTF-8",
+        success:function(res){
+        	console.log(res);
+           	 document.getElementById("teacherName").innerHTML = res.teaDetail.teacherName;
+           	 document.getElementById("age").innerHTML = res.teaDetail.age;
+           	 document.getElementById("pic").innerHTML = res.teaDetail.pic;
+        	
+        },
+        error:function(res){
+        	console.log(res)
+        },
+        });
+});
+</script>
 <table class = "table">
 <tr>
 	<td>姓名</td>
@@ -19,9 +48,9 @@
 	<td>年龄</td>
 </tr>
 <tr>
-	<td>${td.teacherName}</td>
-	<td>${td.age}</td>
-	<td>${td.pic}</td>
+	<td id = "teacherName"></td>
+	<td id = "age"></td>
+	<td id = "pic"></td>
 </tr>
 </table>
 

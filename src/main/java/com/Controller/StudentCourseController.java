@@ -76,7 +76,7 @@ public class StudentCourseController {
 		System.out.println("ssm接收浏览器提交的json，并转换成StudentCourse对象："+record);
 		studentCourseService.updateGrade(record);
 		JSONObject json= new JSONObject();
-        json.put("msg", "OK");
+        json.put("msg", "success");
         return json.toJSONString();
 	}
 	
@@ -87,14 +87,16 @@ public class StudentCourseController {
 	 * @param record
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/selectGrade")
-	public ModelAndView selectGrade(StudentCourse record) {
-		ModelAndView mav = new ModelAndView();
+	public String selectGrade(@RequestBody StudentCourse record) {
 		StudentCourse sc = new StudentCourse();
 		sc = studentCourseService.selectGrade(record);
-		mav.addObject("grade",sc);
-		mav.setViewName("teado");
-		return mav;
+		JSONObject json = new JSONObject();
+		json.put("detail",JSONObject.toJSON(sc));
+		//1表示处理成功
+		json.put("msg",1);
+		return json.toJSONString();
 	}
 	
 	/**

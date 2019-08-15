@@ -69,5 +69,10 @@ public interface StudentDMapper {
     List<StudentD> belongClass(StudentD record);
 
 
+    /**
+     *<p>Title: studentdList</p>
+     *<p>Description: 学生查询</p>
+     * @return
+     */
     List<StudentD> studentdList();
 }

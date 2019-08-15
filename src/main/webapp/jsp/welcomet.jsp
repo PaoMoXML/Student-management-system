@@ -14,7 +14,7 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a href="">Overview <span class="sr-only">(current)</span></a></li>
             <li><a href="${pageContext.request.contextPath}/studentD/listStudentD2" target="right">教师学生查询</a></li>
-            <li><a href="${pageContext.request.contextPath}/teacherd/teacherD?teaid=${teacher.stuid}" target="right">教师个人中心</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/teacherd.jsp" target="right">教师个人中心</a></li>
           </ul>
 
   </div> 

@@ -26,6 +26,19 @@
 
 <script type="text/javascript">
 	$(function(){
+		
+		$(function(){
+			var rows = $('#table').bootstrapTable('getData');//行的数据
+			     var ids = "";
+			     for(var i=0;i<rows.length;i++){
+			         if(rows[i].check){
+			             ids += rows[i].id+",";
+			         }
+			     }
+			var rowData = $("#table").bootstrapTable('getRowByUniqueId', "id");
+			console.log(rowData)
+		})
+		
 		$('#table').bootstrapTable('destroy').bootstrapTable({
 			ajax : function(request){
 				    var url = "${pageContext.request.contextPath}/studentD/stuList"
@@ -136,7 +149,7 @@
 		$('#table2').bootstrapTable('destroy').bootstrapTable({
 			ajax : function(request){
 				    var url = "${pageContext.request.contextPath}/studentD/stuList"
-
+					var stuid = 
 						$.ajax({
 							type:"post",
 							url:url,
@@ -192,13 +205,17 @@
 			}],
 					
 		});
-    	
-    	
+
+		
       $table2.bootstrapTable('resetView')
     })
   })
+  
 </script>
 
+<script type="text/javascript">
+
+</script>
 
 
 

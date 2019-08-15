@@ -9,12 +9,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Pojo.TeacherD;
 import com.Service.TeacherdService;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.util.Page;
@@ -38,14 +41,15 @@ public class TeacherdController {
 	 * @param record
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/teacherD")
-	public ModelAndView teacherd(TeacherD record) {
-		ModelAndView mav = new ModelAndView();
+	public String teacherd(@RequestBody TeacherD record) {
+		JSONObject json = new JSONObject();
 		TeacherD td = new TeacherD();
 		td = teacherdService.teaDetail(record);
-		mav.addObject("td",td);
-		mav.setViewName("teacherd");
-		return mav;
+		json.put("teaDetail", JSONObject.toJSON(td));
+		json.put("msg","success");
+		return json.toJSONString();
 		
 	}
 	
