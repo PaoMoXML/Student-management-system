@@ -57,10 +57,6 @@
     </div>
     
     
-    <div>
-    <a href="changeCourse.jsp">添加课程</a>
-    <a href="">删除课程</a>
-    </div>
 
 <form action = "${pageContext.request.contextPath}/teacherd/teaList">
 姓名<input type = "text" name = "teacherName">
@@ -128,6 +124,10 @@
     </table>
 
 
+    <div>
+    <a href="changeCourse.jsp" class = "btn btn-sm btn-primary">添加课程</a>
+    <a href="" class = "btn btn-sm btn-primary">删除课程</a>
+    </div>
 
 
 

@@ -288,5 +288,9 @@
 	<select id="stuDetail" resultType = "com.Pojo.StudentD">
 	select * from student_d where stuid = #{stuid}
 	</select>
+
+  <select id="studentdList" resultType = "com.Pojo.StudentD">
+	select * from student_d
+	</select>
   
 </mapper>

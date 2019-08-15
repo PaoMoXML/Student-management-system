@@ -7,11 +7,11 @@
 </head>
 <body>
     <%  
-              if(session.getAttribute("manager") == null) {    
+              if(session.getAttribute("manager") == null) {
     %>  
            <script type="text/javascript" language="javascript">      
              alert("您还没有登录，请登录..."); 
-            top.location.href="/ssm1/student/Loginpage";
+            top.location.href="/ssm10/student/Loginpage";
             </script> 
     <%  
         }  

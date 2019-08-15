@@ -16,12 +16,8 @@
             <li><a href="${pageContext.request.contextPath}/studentD/listStudentD2" target="right">教师学生查询</a></li>
             <li><a href="${pageContext.request.contextPath}/teacherd/teacherD?teaid=${teacher.stuid}" target="right">教师个人中心</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="${pageContext.request.contextPath}/jsp/student.jsp"target="right">学生信息中心</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/manager.jsp"target="right">管理员中心</a></li>
-          </ul>
+
   </div> 
-        
           <div class = "container" style="margin:35px auto auto auto;">
             <iframe src="${pageContext.request.contextPath}/jsp/teacher.jsp" name="right" width="800" height="700" frameborder="0" ></iframe>
           </div>

@@ -1,5 +1,6 @@
 package com.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,7 @@ public class StudentDController {
 		mav.setViewName("teacher");
 		return mav;
 		
+		
 	}
 
 	/**
@@ -95,9 +97,18 @@ public class StudentDController {
 		JSONObject json = new JSONObject();
 		StudentD stu = new StudentD();
 		stu = studentDService.stuDetail(record);
-		json.put("studentd", JSONObject.toJSON(stu));
+		json.put("studentD", JSONObject.toJSON(stu));
 		return json.toJSONString();
-		
 	}
-	
+
+
+	@ResponseBody
+	@RequestMapping(value = "/stuList")
+	public String stuList(){
+		JSONObject json = new JSONObject();
+		List<StudentD> studentDList = new ArrayList<>();
+		studentDList = studentDService.studentdList();
+		json.put("stuList",JSONObject.toJSON(studentDList));
+		return json.toJSONString();
+	}
 }

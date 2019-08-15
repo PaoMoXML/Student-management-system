@@ -25,6 +25,9 @@ public interface StudentDService {
      */
     StudentD stuDetail(StudentD record);
 
+
+    List<StudentD> studentdList();
+
 	
 
 }

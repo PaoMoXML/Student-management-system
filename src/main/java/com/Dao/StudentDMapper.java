@@ -67,4 +67,7 @@ public interface StudentDMapper {
      * @return
      */
     List<StudentD> belongClass(StudentD record);
+
+
+    List<StudentD> studentdList();
 }

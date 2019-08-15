@@ -36,7 +36,7 @@ public class StudentCourseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/course",method = RequestMethod.GET)
-	public ModelAndView course(String stuid) {
+	public  ModelAndView course(String stuid) {
 		ModelAndView mav = new ModelAndView();
 		List<StudentCourse> list = new ArrayList<>();
 		list = studentCourseService.selectAll(stuid);
@@ -72,7 +72,7 @@ public class StudentCourseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/updateGrade")
-	public String updateGrade(@RequestBody StudentCourse record) throws UnsupportedEncodingException {
+	public String updateGrade(@RequestBody StudentCourse record){
 		System.out.println("ssm接收浏览器提交的json，并转换成StudentCourse对象："+record);
 		studentCourseService.updateGrade(record);
 		JSONObject json= new JSONObject();

@@ -70,4 +70,10 @@ public class StudentDServiceImpl implements StudentDService{
 		return studentDMapper.stuDetail(record);
 	}
 
+
+	@Override
+	public List<StudentD> studentdList(){
+		return studentDMapper.studentdList();
+	}
+
 }

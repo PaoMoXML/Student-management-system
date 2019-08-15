@@ -25,7 +25,7 @@ import com.alibaba.fastjson.JSONObject;
 @Controller
 @RequestMapping(value = "/student")
 public class StudentController {
-	
+
 	boolean b;
 	@Autowired
 	StudentService studentService;
@@ -99,23 +99,28 @@ public class StudentController {
 		stu = studentService.stuLogin(record);
 		model.addAttribute("msg", "登录成功");
 		//教师页面用URL
-		String url = "redirect:http:/ssm10/jsp/welcome.jsp";
+		String url = "redirect:http:/ssm10/jsp/welcomet.jsp";
 		//管理员页面用URL
-		String url2 = "redirect:http:/ssm10/jsp/welcome.jsp";
+		String url2 = "redirect:http:/ssm10/jsp/welcomem.jsp";
+		//学生页面用URL
+		String url3 = "redirect:http:/ssm10/jsp/welcomes.jsp";
 		if(stu == null) {
 			System.out.println("无法登陆");
 		}else if(record.getPassword().equals(stu.getPassword())) {
 			if(record.getRoleid().equals(a)) {
 				//将管理员信息放入session
-				req.getSession().setAttribute("manager",stu);
+				req.getSession().setAttribute("login",stu);
+				req.getSession().setAttribute("manager", stu);
 				return url2;
 			}else if(record.getRoleid().equals(b)) {
 				//将学生信息放入session
+				req.getSession().setAttribute("login", stu);
 				req.getSession().setAttribute("student", stu);
-				return url;
+				return url3;
 			}else if(record.getRoleid().equals(c)) {
 				//将教师信息放入session
-				req.getSession().setAttribute("teacher",stu);
+				req.getSession().setAttribute("login",stu);
+				req.getSession().setAttribute("teacher", stu);
 				return url;
 			}
 		}else {
