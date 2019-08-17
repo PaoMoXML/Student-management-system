@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Pojo.TeacherD;
 import com.Service.TeacherdService;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -50,7 +49,6 @@ public class TeacherdController {
 		json.put("teaDetail", JSONObject.toJSON(td));
 		json.put("msg","success");
 		return json.toJSONString();
-		
 	}
 	
 	/**

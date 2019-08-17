@@ -19,16 +19,18 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
 <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
+
 </head>
 <body>
 <table  class = "table">
 		<tr>
+			<td>学号</td>
+			<td>课程号</td>
 			<td>课程名</td>
 			<td>教师</td>
 			<td>上课地点</td>
 			<td>上课时间</td>
 			<td>成绩</td>
-			<td>学号</td>
 			<td>操作</td>
 		</tr>
 		<c:forEach items="${sc}" var="sc" varStatus="st">
@@ -40,12 +42,23 @@
 			<td>${sc.course.place}</td>
 			<td>${sc.course.time}</td>
 			<td>${sc.grade}</td>
-			<td><button  id="${sc.stuid}" onclick = "lick(this, this.id)"class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalTable">选择</button></td>
+			<td><div id = "checkstu"><button  id="${sc.stuid}" onclick = "lick(this, this.id)"class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalTable">选择</button></div></td>
 		</tr>
 		</c:forEach>
 </table>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var check = "${sessionScope.teacher.stuid}";
+	console.log(check)
+	if(check == null){
+		 document.getElementById("checkstu").style.display = "hidden";
+	}
+})
+</script>
 <script type="text/javascript">
 function lick(obj,id){
+
 	var td_content = $(obj).parents("tr").children("td");  //获取当前行中的所有td值
 	var content = td_content.eq(0).text(); //获取当前行第一个td的值
 	var content2 = td_content.eq(1).text();
@@ -70,13 +83,8 @@ function lick(obj,id){
         },
 	})
 }
+
 </script>
-<%-- ${pageContext.request.contextPath}/studentCourse/selectGrade?stuid=${sc.stuid}&courseid=${sc.courseid}
- --%><br>
-
-
-
-
 
 <div id="modalTable" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -92,7 +100,7 @@ function lick(obj,id){
       
 		<input   id = "stuid" value="" type="hidden">
 		<input   id = "courseid" value="" type="hidden">
-    输入成绩<input    id = "grade" value="" type="text" >
+    输入成绩<input    id = "grade" value="" type="text">
 		<button  id = "sender2" class="btn btn-sm btn-danger" data-dismiss="modal" aria-label="Close">提交</button>
 		
 <script type="text/javascript">
@@ -117,6 +125,7 @@ function lick(obj,id){
                 console.log(res);
                         if (res.msg == "success") {
 	                            swal('提示', "修改成功", 'success');
+								location.reload();
 	                        } else {
 	                            swal('提示', "修改失败", 'error');
 	                        }

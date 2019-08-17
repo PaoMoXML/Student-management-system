@@ -11,6 +11,10 @@
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css" />
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+
+<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
+<script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
+
 </head>
 <body>
 	<table class = "table" id="tbList">
@@ -54,7 +58,7 @@ function lick (obj,id){
         success: function(result){
             console.log(result.key);
             if(result.key == 1){
-            	alert("已选过此课程")
+            	swal('提示', "已选过此课程", 'error');
             }
 				//选课
             if(result.key == 2){
@@ -67,11 +71,11 @@ function lick (obj,id){
                     contentType : "application/json;charset=UTF-8",
                     success: function(data){
                     	console.log(data);
-                    	 if(data.key== 3){
-                         	alert("选课成功")
+                    	 if(data.key == "success"){
+                    		 swal('提示', "选课成功", 'success');
                          }
-                    	 if(data.key== 4){
-                          	alert("选课失败")
+                    	 else{
+                    		 swal('提示', "选课失败", 'error');
                           }
                     }
             	});

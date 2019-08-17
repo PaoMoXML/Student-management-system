@@ -223,5 +223,12 @@
 		where stuid = #{stuid} 
 			and state = #{state}
 	</update>
+	
+	<!-- 修改密码 -->
+	<select id="changePassword" resultType = "com.Pojo.Student">
+	
+		select * from student where stuid = #{stuid} and password = #{password} and roleid = #{roleid} and state = #{state}
+		
+	</select>
   
 </mapper>

@@ -13,7 +13,6 @@
   <div class="col-sm-3 col-md-2 sidebar" >
           <ul class="nav nav-sidebar">
             <li class="active"><a href="">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/studentD/listStudentD2" target="right">教师学生查询</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="${pageContext.request.contextPath}/jsp/student.jsp"target="right">学生信息中心</a></li>

@@ -137,7 +137,7 @@ public class StudentCourseController {
 		int a = studentCourseService.insertCourse(record);
 		if(a == 1) {
 			//选课成功
-			json.put("key", 3);
+			json.put("key", "success");
 			return json.toJSONString();
 		}else {
 			//选课失败

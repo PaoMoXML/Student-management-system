@@ -21,11 +21,41 @@
 学号<input type="text" name = "stuid" placeholder="输入学号" class = "form-control" required=""><br>
 <label for="inputPassword" class="sr-only">Password</label>
 密码<input type="password" name = "password" placeholder="输入密码" class = "form-control" required=""><br>
-<input type="radio" name = "roleid" value="0" checked>管理员<br>
-<input type="radio" name = "roleid" value="1">学生<br>
-<input type="radio" name = "roleid" value="2">教师<br>
+<input type="radio" name = "roleid" value="0" checked>管理员
+<input type="radio" name = "roleid" value="1">学生
+<input type="radio" name = "roleid" value="2">教师
+<div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
+    	<div class="col-sm-3">
+      	<input type="text" class="form-control" id="inputPassword3" name="ucheckC" placeholder="请输入验证码">
+    	</div>
+   		 <div class="col-sm-3">
+     	 <img id="checkCodeImg" src="${pageContext.request.contextPath}/CheckCode/CheckCode" οnclick="checkCode(this)"/>
+   		 </div>
+</div>
 <input type="submit" value="登录" class = "btn btn-lg btn-primary btn-block">
 </form>
+
+
+
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript">
+  
+   function checkCode(obj) {
+       /*?后面是GET请求数据*/
+//怎么点击图片就刷新验证码，不能刷新页面，否则用户名与密码刷掉了
+  //如何保证页面不刷新，图片重新加载访问servlet就可以切换验证码？
+  //浏览器对于img标签，如果src的路径不变不会重新请求servlet资源，所以必须改变src的路径
+
+      obj.src="${pageContext.request.contextPath}/CheckCode/CheckCode?"+new Date().getTime();
+           $(function () {
+               $("#tou").load('guide.html');
+           });
+       }
+
+  </script>
+
+
 
 
 
@@ -34,7 +64,7 @@
 
 学号<input type = "text" name = "stuid" placeholder="学号" class = "form-control" required=""><br>
 密码<input type = "password" name = "password"  id = "pwd1" placeholder="密码" class = "form-control" required=""><br>
-密码<input type = "password" id = "pwd2" placeholder="重复密码" class = "form-control"><span id="tishi" required=""></span><br>
+密码<input type = "password" id = "pwd2" placeholder="重复密码" class = "form-control" required=""><span id="tishi" ></span><br>
 
 <input type= "radio" name = "roleid" value="1" checked>学生<br>
 <input type= "radio" name = "roleid" value="2">教师<br>

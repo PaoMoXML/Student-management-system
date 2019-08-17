@@ -64,4 +64,12 @@ public interface StudentMapper {
      * @return
      */
     int reSetPassword (Student record);
+    
+    /**
+     *<p>Title: changePassword</p>
+     *<p>Description:学生教师修改密码 </p>
+     * @param record
+     * @return
+     */
+    List<Student> changePassword (Student record);
 }

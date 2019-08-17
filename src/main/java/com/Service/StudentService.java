@@ -1,5 +1,7 @@
 package com.Service;
 
+import java.util.List;
+
 import com.Pojo.Student;
 
 public interface StudentService {
@@ -29,5 +31,12 @@ public interface StudentService {
     int reSetPassword (Student record);
 
 
+    /**
+     *<p>Title: changePassword</p>
+     *<p>Description: 学生教师修改密码</p>
+     * @param record
+     * @return
+     */
+    List<Student> changePassword (Student record);
 
 }

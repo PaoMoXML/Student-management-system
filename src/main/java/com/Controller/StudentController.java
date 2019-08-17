@@ -1,7 +1,10 @@
 package com.Controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,7 +92,7 @@ public class StudentController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/Login",method = RequestMethod.GET)
-	public String stuLogin(Student record,Model model,HttpServletRequest req) throws Exception{
+	public String stuLogin(Student record,Model model,HttpServletRequest req,String ucheckC ) throws Exception{
 		String a = "0";
 		String b = "1";
 		String c = "2";
@@ -104,6 +107,9 @@ public class StudentController {
 		String url2 = "redirect:http:/ssm10/jsp/welcomem.jsp";
 		//学生页面用URL
 		String url3 = "redirect:http:/ssm10/jsp/welcomes.jsp";
+		//验证 验证码是否输入正确
+	    if(req.getSession().getAttribute("checkCode").toString().equalsIgnoreCase(ucheckC)) {
+	    	System.out.println("验证码输入正确");
 		if(stu == null) {
 			System.out.println("无法登陆");
 		}else if(record.getPassword().equals(stu.getPassword())) {
@@ -126,6 +132,7 @@ public class StudentController {
 		}else {
 				return "error";
 		}
+	    }
 		return "error";
 	}
 	
@@ -185,10 +192,33 @@ public class StudentController {
 	@RequestMapping(value = "/reSetPassword2")
 	public String reSetPassword2(@RequestBody Student record) {
 		record.setState("1");
-		int a;
-		a = studentService.reSetPassword(record);
+		int a = studentService.reSetPassword(record);
 		JSONObject json= new JSONObject();
-        json.put("key", "ok");
+		if(a==1) {		
+			json.put("key", "success");
+		}else {
+			json.put("key", "error");
+		}
+		return json.toJSONString();
+	}
+	
+	/**
+	 *<p>Title: changePassword</p>
+	 *<p>Description:学生教师修改密码 之前的确认旧密码</p>
+	 * @param record
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/changePassword")
+	public String changePassword(@RequestBody Student record) {
+		record.setState("1");
+		List<Student> sl = studentService.changePassword(record);
+		JSONObject json= new JSONObject();
+		if(sl.size()>=1) {
+			json.put("key", "success");
+		}else{
+			json.put("key", "error");
+		}
 		return json.toJSONString();
 	}
 	

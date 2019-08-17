@@ -33,7 +33,6 @@ $(document).ready(function(){
            	 document.getElementById("teacherName").innerHTML = res.teaDetail.teacherName;
            	 document.getElementById("age").innerHTML = res.teaDetail.age;
            	 document.getElementById("pic").innerHTML = res.teaDetail.pic;
-        	
         },
         error:function(res){
         	console.log(res)
@@ -94,7 +93,6 @@ $('#reSet').click(function(){
 <input type="text" name="password" id="password" value="" />
 <input type="hidden" name="stuid" id="stuid" value="" />
 <input type="hidden" name="roleid" id="roleid" value="" />
-<input type="hidden" name="id" id="id" value="" />
 <input type="hidden" name="id" id="id" value="" />
 	<button id = "change" class = "btn btn-sm btn-primary">修改</button>
 </form>

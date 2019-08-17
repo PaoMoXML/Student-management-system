@@ -1,5 +1,7 @@
 package com.Service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +66,18 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public int reSetPassword(Student record) {
 		return studentMapper.reSetPassword(record);
+	}
+
+	/**
+	 * <p>Title: changePassword</p>
+	 * <p>Description:学生教师修改密码 </p>
+	 * @param record
+	 * @return
+	 * @see com.Service.StudentService#changePassword(com.Pojo.Student)
+	 */
+	@Override
+	public List<Student> changePassword(Student record) {
+		return studentMapper.changePassword(record);
 	}
 
 }
