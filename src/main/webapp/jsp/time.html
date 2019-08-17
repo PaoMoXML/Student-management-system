@@ -1,0 +1,99 @@
+<style>
+#iswtf-d-cimg .date{
+    width: 24px;
+    height: 30px;
+    display: inline-block;
+	float: left;
+    background: url(../imgs/nums_8b3bfc0.png) 0 -261px;
+}
+#iswtf-d-cimg i{
+	display: inline-block;
+    height: 28px;
+    width: 12px;
+    text-align: center;
+    font-style: normal;
+	float: left;
+	line-height: 28px;
+}
+</style>
+<div id="iswtf-d-cimg" style="bottom: 1000%">
+	<span class="date date-ht"></span>
+	<span class="date date-ho"></span>
+	<i>:</i>
+	<span class="date date-mt"></span>
+	<span class="date date-mo"></span>
+	<i>:</i>
+	<span class="date date-st"></span>
+	<span class="date date-so"></span>
+</div>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-table.js"></script>
+<script src="../js/bootstrap-table-zh-CN.js"></script>
+<script>
+function startTime(){
+	var today=new Date();
+	
+	var h=today.getHours();
+	var ho=geto(h);
+	var ht=gett(h);
+	
+	var m=today.getMinutes();
+	var mo=geto(m);
+	var mt=gett(m);
+	
+	
+	var s=today.getSeconds();
+	var so=geto(s);
+	var st=gett(s);
+
+	var dimg=[];
+	dimg['0']='-260';
+	dimg['1']='1';
+	dimg['2']='-28';
+	dimg['3']='-57';
+	dimg['4']='-86';
+	dimg['5']='-115';
+	dimg['6']='-144';
+	dimg['7']='-173';
+	dimg['8']='-202';
+	dimg['9']='-231';
+	
+	// add a zero in front of numbers<10
+	/*m=checkTime(m);
+	s=checkTime(s);*/
+	/*document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+	t=setTimeout('startTime()',500);*/
+	if($('.date-ho').attr('d')!=ho) $('.date-ho').animate({backgroundPositionY:+dimg[ho]+'px'},'slow',function(){
+		d(this,ho);
+	});
+	if($('.date-ht').attr('d')!=ht) $('.date-ht').animate({backgroundPositionY:+dimg[ht]+'px'},'slow',function(){
+		d(this,ht);
+	});
+	
+	if($('.date-mo').attr('d')!=mo) $('.date-mo').animate({backgroundPositionY:+dimg[mo]+'px'},'slow',function(){
+		d(this,mo);
+	});
+	if($('.date-mt').attr('d')!=mt) $('.date-mt').animate({backgroundPositionY:+dimg[mt]+'px'},'slow',function(){
+		d(this,mt);
+	});
+	
+	if($('.date-so').attr('d')!=so) $('.date-so').animate({backgroundPositionY:+dimg[so]+'px'},'slow',function(){
+		d(this,so);
+	});
+	$('.date-st').animate({backgroundPositionY:+dimg[st]+'px'},'slow',function(){
+		d(this,st);
+	});
+}
+function d(that,n){
+	$(that).attr('d',n);
+}
+function geto(a){
+	return parseInt(a%10);//��ȡ��λ
+}
+function gett(a){
+	return parseInt((a%100)/10);//��ȡʮλ
+}
+startTime();
+setInterval('startTime()',1000);
+</script>

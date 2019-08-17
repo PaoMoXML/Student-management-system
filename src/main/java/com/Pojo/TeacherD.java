@@ -1,6 +1,8 @@
 package com.Pojo;
 
-public class TeacherD {
+import com.util.page2;
+
+public class TeacherD extends page2{
     private Integer id;
 
     private String teaid;

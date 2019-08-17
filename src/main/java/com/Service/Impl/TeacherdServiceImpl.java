@@ -52,4 +52,28 @@ public class TeacherdServiceImpl implements TeacherdService {
 		return teacherDMapper.teaList(record);
 	}
 
+	/**
+	 * <p>Title: getTotal</p>
+	 * <p>Description: （框架） 获取教师数量</p>
+	 * @param record
+	 * @return
+	 * @see com.Service.TeacherdService#getTotal(com.Pojo.TeacherD)
+	 */
+	@Override
+	public int getTotal(TeacherD record) {
+		return teacherDMapper.getTotal(record);
+	}
+
+	/**
+	 * <p>Title: teaTable</p>
+	 * <p>Description:（框架） 获取教师列表 </p>
+	 * @param record
+	 * @return
+	 * @see com.Service.TeacherdService#teaTable(com.Pojo.TeacherD)
+	 */
+	@Override
+	public List<TeacherD> teaTable(TeacherD record) {
+		return teacherDMapper.teaTable(record);
+	}
+
 }

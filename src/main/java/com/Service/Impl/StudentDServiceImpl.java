@@ -71,9 +71,42 @@ public class StudentDServiceImpl implements StudentDService{
 	}
 
 
+	/**
+	 * <p>Title: studentdList</p>
+	 * <p>Description: 获取学生列表</p>
+	 * @param record
+	 * @return
+	 * @see com.Service.StudentDService#studentdList(com.Pojo.StudentD)
+	 */
 	@Override
-	public List<StudentD> studentdList(){
-		return studentDMapper.studentdList();
+	public List<StudentD> studentdList(StudentD record){
+		return studentDMapper.studentdList(record);
 	}
+
+	/**
+	 * <p>Title: getTotal</p>
+	 * <p>Description: （框架）获取分页数量</p>
+	 * @param record
+	 * @return
+	 * @see com.Service.StudentDService#getTotal(com.Pojo.StudentD)
+	 */
+	@Override
+	public int getTotal(StudentD record) {
+		return studentDMapper.getTotal(record);
+	}
+
+	/**
+	 * <p>Title: insert</p>
+	 * <p>Description: 管理员添加学生</p>
+	 * @param record
+	 * @return
+	 * @see com.Service.StudentDService#insert(com.Pojo.StudentD)
+	 */
+	@Override
+	public int insert(StudentD record) {
+		return studentDMapper.insert(record);
+	}
+	
+	
 
 }

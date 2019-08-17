@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,16 +51,14 @@ public class CourseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/insertCourse")
-	public String insertCourse(Course record) {
+	public String insertCourse(@RequestBody Course record) {
 		JSONObject json = new JSONObject();
 		int a = courseService.insert(record);
-		if(a == 1) {
-			//1代表插入成功
-			json.put("key", 1);
+		if(a == 1){
+			json.put("key", "success");
 			return json.toJSONString();
 		}else {
-			//2代表插入失败
-			json.put("key", 2);
+			json.put("key", "error");
 			return json.toJSONString();
 		}
 	}

@@ -41,4 +41,21 @@ public interface TeacherDMapper {
      * @return
      */
     List<TeacherD> teaList(TeacherD record);
+    
+    
+    /**
+     *<p>Title: getTotal</p>
+     *<p>Description: （框架）获取教师列表总数</p>
+     * @param record
+     * @return
+     */
+    int getTotal(TeacherD record);
+    
+    /**
+     *<p>Title: teaTable</p>
+     *<p>Description:（框架）获取教师表+模糊查询 </p>
+     * @param record
+     * @return
+     */
+    List<TeacherD> teaTable(TeacherD record);
 }

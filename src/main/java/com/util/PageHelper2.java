@@ -14,12 +14,12 @@ import java.util.List;
  * @author XuMenglin
  * @date 2019年8月15日
  */
-public class PageHelper<T> {
+public class PageHelper2<T> {
 	//实体类集合
     private List<T> rows = new ArrayList<T>();
     //数据总条数
     private int total;
-    public PageHelper() {
+    public PageHelper2() {
         super();
     }
  

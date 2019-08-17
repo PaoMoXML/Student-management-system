@@ -136,6 +136,7 @@ $(document).ready(function(){
                 	            success: function(result){
                 	            	alert("密码修改成功");
                 	                   console.log(result);
+                	                   
                 	               },
                 	               error: function(result) {
                 	                   console.log(result);

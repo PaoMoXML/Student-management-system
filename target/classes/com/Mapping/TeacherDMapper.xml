@@ -187,4 +187,23 @@
 		</if>
 	</where>
 </select>
+
+
+
+<select id="getTotal" resultType="int">
+select count(*) from teacher_d where 1=1 
+	<if test = "teacherName != null and teacherName != ''" >
+	
+		and teacherName LIKE CONCAT('%',#{teacherName},'%')
+	</if>
+</select>
+
+
+<select id="teaTable" resultMap = "BaseResultMap">
+ select * from teacher_d where 1=1 
+ 	<if test = "teacherName != null and teacherName != ''" >
+		and teacherName LIKE CONCAT('%',#{teacherName},'%')
+	</if>
+	LIMIT #{offset},#{limit}
+</select>
 </mapper>

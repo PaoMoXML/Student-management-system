@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Pojo.StudentD;
 import com.Pojo.TeacherD;
 import com.Service.TeacherdService;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.util.Page;
+import com.util.PageHelper2;
 
 /**
  * <p>Title: TeacherdController</p>
@@ -69,9 +71,28 @@ public class TeacherdController {
 		mav.addObject("tl",list);
 		mav.setViewName("manager");
 		return mav;
-
 	}
 	
-	
+	/**
+	 *<p>Title: teacherTable</p>
+	 *<p>Description:(框架)教师列表服务器分页 </p>
+	 * @param record
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/teacherTable")
+	public PageHelper2<TeacherD> teacherTable(@RequestBody TeacherD record){
+		PageHelper2<TeacherD> tl = new PageHelper2<TeacherD>();
+		//统计总记录数
+		Integer total = teacherdService.getTotal(record);
+		tl.setTotal(total);
+		//查询当前页实体对象
+		List<TeacherD> list = teacherdService.teaTable(record);
+		tl.setRows(list);
+		System.out.println(list.toString());
+		return tl;
+		
+	}
+
 
 }

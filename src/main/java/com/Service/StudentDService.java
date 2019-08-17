@@ -26,8 +26,28 @@ public interface StudentDService {
     StudentD stuDetail(StudentD record);
 
 
-    List<StudentD> studentdList();
+    /**
+     *<p>Title: studentdList</p>
+     *<p>Description: 学生列表查询</p>
+     * @param record
+     * @return
+     */
+    List<StudentD> studentdList(StudentD record);
 
 	
-
+    /**
+     *<p>Title: getTotal</p>
+     *<p>Description: （框架）获取分页总数</p>
+     * @param record
+     * @return
+     */
+    int getTotal(StudentD record);
+    
+    /**
+     *<p>Title: insert</p>
+     *<p>Description: 管理员添加学生</p>
+     * @param record
+     * @return
+     */
+    int insert(StudentD record);
 }

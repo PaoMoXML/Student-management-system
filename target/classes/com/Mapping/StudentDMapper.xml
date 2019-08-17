@@ -288,9 +288,21 @@
 	<select id="stuDetail" resultType = "com.Pojo.StudentD">
 	select * from student_d where stuid = #{stuid}
 	</select>
-
+<!-- 查看学生列表 -->
   <select id="studentdList" resultType = "com.Pojo.StudentD">
-	select * from student_d
+  select * from student_d where 1=1
+	<if test="name!=null and name !=''">
+		AND name LIKE CONCAT('%',#{name},'%')
+	</if>
+	LIMIT #{offset},#{limit}
 	</select>
+	
+<!-- 	获取总数 -->
+	<select id="getTotal" resultType="int">
+	SELECT count(1) FROM student_d WHERE 1 = 1
+	<if test="name!=null and name !=''">
+		AND name LIKE CONCAT('%',#{name},'%')
+	</if>
+</select>
   
 </mapper>
