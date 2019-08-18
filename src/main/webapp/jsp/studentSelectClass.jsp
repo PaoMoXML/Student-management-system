@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%> 
-
 
 <html>
 <head>
@@ -34,7 +32,7 @@
 			<td>${cl.courseName}</td>
 			<td>${cl.teacherName}</td>
 			<td>${cl.place}</td>
-			<td> <fmt:formatDate value="${cl.time}" pattern="yyyy-MM-dd" ></fmt:formatDate></td>
+			<td>${cl.time}</td>
 			<td><button  id="${cl.id}" onclick = "lick(this, this.id)" class = "btn btn-sm btn-success">选择</button></td>
 		</tr>
 		</c:forEach>

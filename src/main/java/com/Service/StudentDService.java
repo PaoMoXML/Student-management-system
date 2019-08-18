@@ -41,7 +41,7 @@ public interface StudentDService {
      * @param record
      * @return
      */
-    int getTotal(StudentD record);
+    int getTotal1(StudentD record);
     
     /**
      *<p>Title: insert</p>

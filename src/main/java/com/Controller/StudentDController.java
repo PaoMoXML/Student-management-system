@@ -139,7 +139,7 @@ public class StudentDController {
 	public PageHelper2<StudentD> stuTable2(@RequestBody StudentD record,HttpServletRequest request){
 		PageHelper2<StudentD> pageHelper2 = new  PageHelper2<StudentD>();
 		//统计总记录数
-		Integer total = studentDService.getTotal(record);
+		Integer total = studentDService.getTotal1(record);
 		pageHelper2.setTotal(total);
 		//查询当前页实体对象
 		List<StudentD> list = studentDService.studentdList(record);

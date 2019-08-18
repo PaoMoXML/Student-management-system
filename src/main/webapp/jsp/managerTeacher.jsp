@@ -53,7 +53,7 @@ $('#mytab').bootstrapTable({
 		   limit : params.limit, // 每页显示数量
 	       offset : params.offset, // SQL语句起始索引
 	       page: (params.offset / params.limit) + 1, 
-	       teacherName : $('#search_name').val(),
+		   name : $('#search_name').val(),
 		};
 		return temp;
 	},

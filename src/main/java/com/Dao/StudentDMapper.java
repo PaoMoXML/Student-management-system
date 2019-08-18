@@ -88,6 +88,6 @@ public interface StudentDMapper {
      * @param record
      * @return
      */
-    int getTotal(StudentD record);
+    int getTotal1(StudentD record);
     
 }

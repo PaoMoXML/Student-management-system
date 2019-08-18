@@ -298,7 +298,7 @@
 	</select>
 	
 <!-- 	获取总数 -->
-	<select id="getTotal" resultType="int">
+	<select id="getTotal1" resultType="int">
 	SELECT count(1) FROM student_d WHERE 1 = 1
 	<if test="name!=null and name !=''">
 		AND name LIKE CONCAT('%',#{name},'%')

@@ -91,8 +91,8 @@ public class StudentDServiceImpl implements StudentDService{
 	 * @see com.Service.StudentDService#getTotal(com.Pojo.StudentD)
 	 */
 	@Override
-	public int getTotal(StudentD record) {
-		return studentDMapper.getTotal(record);
+	public int getTotal1(StudentD record) {
+		return studentDMapper.getTotal1(record);
 	}
 
 	/**

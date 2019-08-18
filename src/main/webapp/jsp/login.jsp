@@ -25,10 +25,7 @@
 <input type="radio" name = "roleid" value="1">学生
 <input type="radio" name = "roleid" value="2">教师
 <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
-    	<div class="col-sm-3">
       	<input type="text" class="form-control" id="inputPassword3" name="ucheckC" placeholder="请输入验证码">
-    	</div>
    		 <div class="col-sm-3">
      	 <img id="checkCodeImg" src="${pageContext.request.contextPath}/CheckCode/CheckCode" οnclick="checkCode(this)"/>
    		 </div>

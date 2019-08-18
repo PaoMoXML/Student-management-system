@@ -235,11 +235,17 @@ $('#addStu').click(function(){
   </div>
 </div>
 
+
+
     <div>
     <button class = "btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTableAddStu">添加学生</button>
     <button class = "btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTableAddCourse">添加课程</button>
     <a href="" class = "btn btn-sm btn-primary">删除课程</a>
     </div>
+
+
+
+
 
 
 </body>
