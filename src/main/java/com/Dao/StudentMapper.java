@@ -72,4 +72,6 @@ public interface StudentMapper {
      * @return
      */
     List<Student> changePassword (Student record);
+    
+
 }

@@ -50,4 +50,21 @@ public interface StudentDService {
      * @return
      */
     int insert(StudentD record);
+    
+    /**
+     *<p>Title: delStu</p>
+     *<p>Description: 删除学生，修改学生状态为2</p>
+     * @param record
+     * @return
+     */
+    int delStu(StudentD record);
+    
+    /**
+     *<p>Title: updateStuInfo</p>
+     *<p>Description: 修改学生信息</p>
+     * @param record
+     * @return
+     */
+    int updateStuInfo (StudentD record);
+
 }

@@ -19,6 +19,9 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/bootstrap-table.js"></script>
 <script src="../js/bootstrap-table-zh-CN.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
+<script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -43,6 +46,38 @@
      </div>
 </div>
 <table id="mytab" class="table table-striped table-bordered table-hover"></table>
+
+
+
+
+
+
+
+
+
+<div id="changeModalTable" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal table</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">    
+      姓名<input type="hidden" class = "form-control" id = "stuid2"> 
+     姓名<input type="text" class = "form-control" id = "name2">
+     年龄<input type="text" class = "form-control" id = "age2">
+     电话<input type="text" class = "form-control" id = "phone2">
+     班级<input type="text" class = "form-control" id = "classid2">
+      </div>
+      <div class="modal-footer">
+        <button type="button"  class="btn btn-secondary"  onclick = "change()" data-dismiss="modal">修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -104,9 +139,86 @@ function formatSex(value, row, index) {
  
 //删除、编辑操作
 function operation(value, row, index) {
-	var htm = "<button id = 'del' class='btn btn-sm btn-danger'>删除</button><button class = 'btn btn-sm btn-warning' id = 'change'>修改</button>"
+	var htm = "<button id = 'del' class='btn btn-sm btn-danger' onclick='del(&apos;"
+			 	+ row.stuid
+			 	+ "&apos;)'>删除</button><button class = 'btn btn-sm btn-warning' data-toggle='modal' data-target='#changeModalTable' onclick = 'showchange(&apos;"
+			 	+ row.stuid
+			 	+ "&apos;,&apos;"
+			 	+ row.name
+			 	+ "&apos;,&apos;"
+			 	+ row.age
+			 	+ "&apos;,&apos;"
+			 	+ row.phone
+			 	+ "&apos;,&apos;"
+			 	+ row.classid
+			 	+ "&apos;)'>修改</button>"
 	return htm;
 }
+ 
+ 
+ function del(stuid){
+	 	var del = {"stuid":stuid};
+		var jsonData = JSON.stringify(del);
+			$.ajax({
+				type:"post",
+				url:'${pageContext.request.contextPath}/studentD/delStu',
+				data:jsonData,
+				dataType:"json",
+		        contentType : "application/json;charset=UTF-8",
+		        success: function(result){
+		            console.log(result);
+                        if (result.key == "success") {
+                             swal('提示', "删除成功", 'success');
+                         } else {
+                             swal('提示', "删除失败", 'error');
+                         }
+		               $('#mytab').bootstrapTable('refresh');
+		           },
+		           error: function(result) {
+		               console.log(result);
+		           },
+			});
+ }
+ function showchange(stuid,name,age,classid,phone){
+	 document.getElementById('stuid2').value=stuid;
+	 document.getElementById('phone2').value=phone;
+	 document.getElementById("name2").value=name;
+	 document.getElementById("age2").value=age;
+	 document.getElementById("classid2").value=classid;
+ }
+ 
+ function change(){
+	 var stuid = document.getElementById('stuid2').value;
+	 var phone = document.getElementById('phone2').value;
+	 var name = document.getElementById("name2").value;
+	 var age = document.getElementById("age2").value;
+	 var classid = document.getElementById("classid2").value;
+	 
+		var changes = {"stuid":stuid,"name":name,"age":age,"classid":classid};
+		var jsonData = JSON.stringify(changes);
+			$.ajax({
+				type:"post",
+				url:'${pageContext.request.contextPath}/studentD/updateStuInfo',
+				data:jsonData,
+				dataType:"json",
+		        contentType : "application/json;charset=UTF-8",
+		        success: function(result){
+		            console.log(result);
+                        if (result.key == "success") {
+                             swal('提示', "修改成功", 'success');
+                         } else {
+                             swal('提示', "修改失败", 'error');
+                         }
+		               $('#mytab').bootstrapTable('refresh');
+		           },
+		           error: function(result) {
+		               console.log(result);
+		           },
+			})
+ }
+  
+
+ 
  
 //查询按钮事件
 $('#search_btn').click(function() {

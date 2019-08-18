@@ -97,8 +97,8 @@
 	<script type="text/javascript">
 		$(function() {
 			//初始化显示教师信息表格
-			var url = "${pageContext.request.contextPath}/studentD/stuDetail";
-			$('#table')
+			var url = "../Teacher/checkTeacher";
+			$('#ShowTeacher')
 					.bootstrapTable(
 							{
 								ajax : function() {
@@ -106,8 +106,8 @@
 										type : "post",
 										url : url,
 										data : {
-											"checkType" : "stuid",
-											"condition" : "xml"
+											"checkType" : "教师工号",
+											"condition" : 2
 										},
 										dataType : "json",
 										//contentType : "application/json;charset=UTF-8",
@@ -116,7 +116,7 @@
 											alert("查询到的条数为：" + json.total);
 											if (json.total != 0) {
 												alert('查找成功！');
-												$("#table")
+												$("#ShowTeacher")
 														.bootstrapTable('load',
 																json.rows);//刷新表格
 											} else {
@@ -150,28 +150,77 @@
 								cardView : false, //是否显示详细视图
 								detailView : false, //是否显示父子表
 								buttonsAlign : "right", //按钮位置
-								columns:[{
-									field:'classid',
-									title:'班级',
-								},{
-									field:'stuid',
-									title:'学号',
-								},{
-									field:'phone',
-									title:'电话',
-								},{
-									field:'name',
-									title:'姓名',
-								},{
-									field:'id',
-									title:'id',
-								},{
-									field:'state',
-									title:'状态',
-								},{
-									field:'age',
-									title:'年龄'
-								}],
+								columns : [
+										{
+											title : "<input type='checkbox' id='checkAlll' name='checkboxall' onclick='checkalll()'/>",
+											formatter : function(value, row,
+													index) {
+												return "<input type='checkbox' id='checkAll' name='checkbox' value="
+														+ row.teacherNo
+														+ " onclick='checkall()'/>";
+											},
+											width : 100
+										},
+										{
+											field : 'ID',
+											title : '编号',
+											visible : false,
+											width : 100,
+											formatter : function(value, row,
+													index) {//设置自动增长列
+												index += 1;
+												return index++;
+											}
+										},
+										{
+											field : 'teacherNo',
+											title : '教师工号',
+											width : 100
+										},
+										{
+											field : 'teacherName',
+											title : '教师姓名',
+											width : 100
+										},
+										{
+											field : 'teacherTel',
+											title : '联系方式',
+											width : 100
+										},
+										{
+											field : 'teacherSex',
+											title : '教师性别',
+											formatter : function(value, row,
+													index) {
+												if (value == 0) {
+													value = '男';
+												}
+												if (value == 1) {
+													value = "女";
+												}
+												return value;
+											},
+											width : 100
+										},
+										{
+											field : 'Operate',
+											title : '操作',
+											formatter : function(value, row,
+													index) {
+												return "<input type='button' class='btn btn-success' value='修改' style='margin-right:10px'  onclick='ChangeTeacher(&apos;"
+														+ row.teacherNo
+														+ "&apos;,&apos;"
+														+ row.teacherName
+														+ "&apos;,&apos;"
+														+ row.teacherTel
+														+ "&apos;,&apos;"
+														+ row.teacherSex
+														+ "&apos;)'></input><input type='button' class='btn btn-danger' value='删除'  onclick='DeleteTeacher(&apos;"
+														+ row.teacherNo
+														+ "&apos;)'></input>";
+											},
+											width : 100
+										} ]
 							});
 		})
 	</script>

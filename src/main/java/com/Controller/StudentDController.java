@@ -137,6 +137,7 @@ public class StudentDController {
 	@ResponseBody
 	@RequestMapping(value = "/stuTable2")
 	public PageHelper2<StudentD> stuTable2(@RequestBody StudentD record,HttpServletRequest request){
+		record.setState("1");
 		PageHelper2<StudentD> pageHelper2 = new  PageHelper2<StudentD>();
 		//统计总记录数
 		Integer total = studentDService.getTotal1(record);
@@ -164,6 +165,39 @@ public class StudentDController {
 		JSONObject json = new JSONObject();
 		if(a==1) {
 			json.put("key", "success");			
+		}else {
+			json.put("key", "error");
+		}
+		return json.toJSONString();
+	}
+	
+	/**
+	 *<p>Title: delStu</p>
+	 *<p>Description: 删除学生 修改学生状态为2</p>
+	 * @param record
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/delStu")
+	public String delStu(@RequestBody StudentD record) {
+		record.setState("2");
+		int a = studentDService.delStu(record);
+		JSONObject json = new JSONObject();
+		if(a == 1) {
+			json.put("key", "success");
+		}else {
+			json.put("key", "error");
+		}
+		return json.toJSONString();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateStuInfo")
+	public String updateStuInfo(@RequestBody StudentD record) {
+		int a = studentDService.updateStuInfo(record);
+		JSONObject json = new JSONObject();
+		if(a == 1) {
+			json.put("key", "success");
 		}else {
 			json.put("key", "error");
 		}

@@ -294,6 +294,7 @@
 	<if test="name!=null and name !=''">
 		AND name LIKE CONCAT('%',#{name},'%')
 	</if>
+	and state = #{state}
 	LIMIT #{offset},#{limit}
 	</select>
 	
@@ -303,6 +304,43 @@
 	<if test="name!=null and name !=''">
 		AND name LIKE CONCAT('%',#{name},'%')
 	</if>
+
+	and state = #{state}
 </select>
+
+<update id="delStu">
+update student_d
+    set state = #{state,jdbcType=VARCHAR} where stuid = #{stuid,jdbcType=VARCHAR}
+</update>
+
+
+<update id="updateStuInfo" parameterType="com.Pojo.StudentD">
+update student_d
+	<set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null">
+        classid = #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="stuid != null">
+        stuid = #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+    </set>
+     where stuid = #{stuid,jdbcType=VARCHAR}
+</update>
+
   
 </mapper>
