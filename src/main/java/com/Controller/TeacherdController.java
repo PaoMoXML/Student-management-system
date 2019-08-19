@@ -93,6 +93,38 @@ public class TeacherdController {
 		return tl;
 		
 	}
+	
+	/**
+	 *<p>Title: delTeacherd</p>
+	 *<p>Description: 删除教师信息</p>
+	 * @param record
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/delTeacherd")
+	public String delTeacherd(@RequestBody TeacherD record) {
+		int a = teacherdService.del(record);
+		JSONObject json = new JSONObject();
+		if(a == 1) {
+			json.put("key", "success");
+		}
+		else {
+			json.put("key", "error");
+		}
+		return json.toJSONString();
+	}
 
-
+	@ResponseBody
+	@RequestMapping(value = "/updateTeaInfo")
+	public String updateTeaInfo(@RequestBody TeacherD record) {
+		int a = teacherdService.updateTeaInfo(record);
+		JSONObject json = new JSONObject();
+		if(a == 1) {
+			json.put("key","success");
+		}else {
+			json.put("key","error");
+		}
+		return json.toJSONString();
+		
+	}
 }

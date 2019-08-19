@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.Pojo.Student;
 import com.Service.StudentService;
 import com.alibaba.fastjson.JSONObject;
+import com.util.CryptoUtil;
 
 /**
  * 
@@ -100,7 +101,8 @@ public class StudentController {
 		//state 状态1为可用 2为不可用
 		record.setState("1");
 		stu = studentService.stuLogin(record);
-		model.addAttribute("msg", "登录成功");
+		model.addAttribute("msg", "登录成功");  
+		//CryptoUtil.decode(stu.getPassword()))解密
 		//教师页面用URL
 		String url = "redirect:http:/ssm10/jsp/welcomet.jsp";
 		//管理员页面用URL

@@ -76,4 +76,30 @@ public class TeacherdServiceImpl implements TeacherdService {
 		return teacherDMapper.teaTable(record);
 	}
 
+	/**
+	 * <p>Title: del</p>
+	 * <p>Description: 删除教师，将状态改为2</p>
+	 * @param record
+	 * @return
+	 * @see com.Service.TeacherdService#del(com.Pojo.TeacherD)
+	 */
+	@Override
+	public int del(TeacherD record) {
+		return teacherDMapper.del(record);
+	}
+
+	/**
+	 * <p>Title: updateTeaInfo</p>
+	 * <p>Description: 修改教师信息</p>
+	 * @param reocrd
+	 * @return
+	 * @see com.Service.TeacherdService#updateTeaInfo(com.Pojo.TeacherD)
+	 */
+	@Override
+	public int updateTeaInfo(TeacherD reocrd) {
+		return teacherDMapper.updateTeaInfo(reocrd);
+	}
+	
+	
+
 }

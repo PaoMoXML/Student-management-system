@@ -59,7 +59,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal table</h5>
+        <h5 class="modal-title">修改</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -88,6 +88,9 @@ $('#mytab').bootstrapTable({
 	url : "${pageContext.request.contextPath}/studentD/stuTable2",//请求路径
 	striped : true, //是否显示行间隔色
 	pageNumber : 1, //初始化加载第一页
+	cache : true,//是否缓存数据
+	toolbar : '#toolbar', //工具按钮用哪个容器
+	buttonsAlign : "right", //按钮位置
 	pagination : true,//是否分页
 	sidePagination : 'server',//server:服务器端分页|client：前端分页
 	pageSize : 5,//单页记录数
@@ -179,6 +182,7 @@ function operation(value, row, index) {
 		           },
 			});
  }
+ //将数据显示倒修改框中
  function showchange(stuid,name,age,classid,phone){
 	 document.getElementById('stuid2').value=stuid;
 	 document.getElementById('phone2').value=phone;
@@ -186,7 +190,7 @@ function operation(value, row, index) {
 	 document.getElementById("age2").value=age;
 	 document.getElementById("classid2").value=classid;
  }
- 
+ //修改
  function change(){
 	 var stuid = document.getElementById('stuid2').value;
 	 var phone = document.getElementById('phone2').value;

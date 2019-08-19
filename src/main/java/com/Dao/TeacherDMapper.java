@@ -58,4 +58,20 @@ public interface TeacherDMapper {
      * @return
      */
     List<TeacherD> teaTable(TeacherD record);
+    
+    /**
+     *<p>Title: del</p>
+     *<p>Description: 删除教师，将状态改为2</p>
+     * @param record
+     * @return
+     */
+    int del(TeacherD record);
+    
+    /**
+     *<p>Title: updateTeaInfo</p>
+     *<p>Description: 修改教师信息</p>
+     * @param reocrd
+     * @return
+     */
+    int updateTeaInfo(TeacherD reocrd);
 }

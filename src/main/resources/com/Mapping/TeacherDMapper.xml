@@ -206,4 +206,30 @@ select count(*) from teacher_d where 1=1
 	</if>
 	LIMIT #{offset},#{limit}
 </select>
+
+<delete id="del" parameterType = "com.Pojo.TeacherD">
+	delete from teacher_d where teaid = #{teaid}
+</delete>
+
+<update id="updateTeaInfo">
+ update teacher_d
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teaid != null">
+        teaid = #{teaid,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teaid = #{teaid}
+</update>
 </mapper>
