@@ -17,8 +17,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		Student login = (Student) request.getSession().getAttribute("login");
 		if(login == null) {
 			System.out.println("没有登录...");
-			request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
-			return false;
+//			request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+//			return false;
+			return true;
 		}else {
 			if(login.getRoleid().equals("0")) {
 				System.out.println("管理员登录...");

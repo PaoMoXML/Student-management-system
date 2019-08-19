@@ -2,7 +2,7 @@ package com.Pojo;
 
 import java.util.List;
 
-public class Classes {
+public class Classes extends StudentD {
     private Integer id;
 
     private String classid;

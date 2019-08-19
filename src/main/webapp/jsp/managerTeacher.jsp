@@ -72,6 +72,7 @@ $('#mytab').bootstrapTable({
 	url : "${pageContext.request.contextPath}/teacherd/teacherTable",//请求路径
 	striped : true, //是否显示行间隔色
 	pageNumber : 1, //初始化加载第一页
+	cache : true,//是否缓存数据
 	pagination : true,//是否分页
 	sidePagination : 'server',//server:服务器端分页|client：前端分页
 	pageSize : 5,//单页记录数
@@ -210,5 +211,59 @@ $('#search_btn').click(function() {
 	});
 })
 </script>
+
+<!-- 添加教师 -->
+<div id="modalTableAddTea" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">添加教师</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div id = "addTeaInput">
+     姓名<input type="text" value="" class = "form-control" id = "teacherName1">
+     年龄<input type="text" value="" class = "form-control" id = "age1">
+     图片<input type="text" value="" class = "form-control" id = "pic1">
+     </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  id ="addTea"data-dismiss="modal">添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+
+$('#addTea').click(function(){
+	var url = "${pageContext.request.contextPath}/teacherd/addTea";
+	var teacherName = document.getElementById('teacherName1').value; 
+	var age = document.getElementById('age1').value; 
+	var pic = document.getElementById('pic1').value; 
+	var insert = {"teacherName":teacherName,"age":age,"pic":pic};
+	var jsonData = JSON.stringify(insert);
+	
+	$.ajax({
+		type:"post",
+		url:url,
+		data:jsonData,
+		dataType:"json",
+        contentType : "application/json;charset=UTF-8",
+        success: function(result){
+               console.log(result);
+           },
+           error: function(result) {
+               console.log(result);
+           },
+	});
+})
+
+</script>
+<button class = "btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTableAddTea">添加教师</button>
 </body>
 </html>

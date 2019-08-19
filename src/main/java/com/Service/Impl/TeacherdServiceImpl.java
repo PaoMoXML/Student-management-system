@@ -99,6 +99,18 @@ public class TeacherdServiceImpl implements TeacherdService {
 	public int updateTeaInfo(TeacherD reocrd) {
 		return teacherDMapper.updateTeaInfo(reocrd);
 	}
+
+	/**
+	 * <p>Title: insert</p>
+	 * <p>Description: </p>
+	 * @param record
+	 * @return
+	 * @see com.Service.TeacherdService#insert(com.Pojo.TeacherD)
+	 */
+	@Override
+	public int insert(TeacherD record) {
+		return teacherDMapper.insert(record);
+	}
 	
 	
 

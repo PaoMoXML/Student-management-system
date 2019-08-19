@@ -191,6 +191,12 @@ public class StudentDController {
 		return json.toJSONString();
 	}
 	
+	/**
+	 *<p>Title: updateStuInfo</p>
+	 *<p>Description: 修改学生信息</p>
+	 * @param record
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/updateStuInfo")
 	public String updateStuInfo(@RequestBody StudentD record) {
@@ -204,4 +210,6 @@ public class StudentDController {
 		return json.toJSONString();
 		
 	}
+	
+
 }

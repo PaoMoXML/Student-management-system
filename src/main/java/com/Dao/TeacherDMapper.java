@@ -16,6 +16,12 @@ public interface TeacherDMapper {
 
     int deleteByExample(TeacherDExample example);
 
+    /**
+     *<p>Title: insert</p>
+     *<p>Description:添加教师 </p>
+     * @param record
+     * @return
+     */
     int insert(TeacherD record);
 
     int insertSelective(TeacherD record);

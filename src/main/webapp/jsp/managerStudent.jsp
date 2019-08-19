@@ -45,6 +45,7 @@
         </div>
      </div>
 </div>
+
 <table id="mytab" class="table table-striped table-bordered table-hover"></table>
 
 
@@ -77,6 +78,121 @@
     </div>
   </div>
 </div>
+
+<!-- 查看班级 -->
+<div id="classesModalTable" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document" style="width:100%;height:100%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">班级</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+		<!-- <table id="table2" class="table table-striped table-bordered table-hover"></table> -->
+		<table  class = "table">
+	    <c:forEach items="${classesInfo}" var="ci" varStatus="st">
+	    <tr>
+	    	<td>班级id：${ci.classid}</td>
+		    	<tr>
+		    	<td>姓名</td>
+		    	<td>年龄</td>
+		    	<td>电话</td>
+		    	</tr>
+		    	<c:forEach items="${ci.studentd}" var="cs" varStatus="st">
+		    	<tr>
+		    	<td>${cs.name}</td>
+		    	<td>${cs.age}</td>
+		    	<td>${cs.phone}</td>
+		    	</tr>
+		    		
+		    	</c:forEach>
+	    </c:forEach>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <input type = "text" id = "classid100"> -->
+
+
+<script>
+
+
+function classes(classid){
+	console.log(classid);
+	
+		
+$.ajax({
+		type:"post",
+		url:"${pageContext.request.contextPath}/classes/seeClasses3?classid="+classid,
+		dataType:"json",
+        contentType : "application/json;charset=UTF-8",
+        success: function(result){
+            console.log(result);
+                        if (result.key == "success") {
+                            swal('提示', "删除成功", 'success');
+                        } else {
+                            swal('提示', "删除失败", 'error');
+                        }
+           },
+           error: function(result) {
+               console.log(result);
+           },
+	});
+/* 	
+$('#table2').bootstrapTable('destroy').bootstrapTable({
+	method : 'post',
+	url : "${pageContext.request.contextPath}/classes/seeClasses3?classid="+classid,//请求路径
+	striped : true, //是否显示行间隔色
+	pageNumber : 1, //初始化加载第一页
+	toolbar : '#toolbar', //工具按钮用哪个容器
+	buttonsAlign : "right", //按钮位置
+	pagination : true,//是否分页
+	sidePagination : 'client',//server:服务器端分页|client：前端分页
+	pageSize : 5,//单页记录数
+	pageList : [ 5, 10, 20, 30 ],//可选择单页记录数
+	showRefresh : true,//刷新按钮
+	clickToSelect:true,//点击选中
+
+	columns : [ {
+		field : '',
+		checkbox : true,
+	},
+		{
+		title : 'ID',
+		field : 'id',
+		sortable : true
+	}, {
+		title : '年龄',
+		field : 'age',
+		sortable : true
+	}, {
+		title : '姓名',
+		field : 'name',
+	}, {
+		title : '年龄',
+		field : 'age',
+		formatter : function(value,row, index){   //主要配置在这里
+            return row.studentd.name;
+        }
+	}, {
+		title : '班级',
+		field : 'classid',
+	},{
+		title : '电话',
+		field : 'phone',
+	}]
+})
+ */
+}
+</script>
+
 
 
 
@@ -122,8 +238,8 @@ $('#mytab').bootstrapTable({
 		title : '姓名',
 		field : 'name',
 	}, {
-		title : '年龄',
-		field : 'age',
+		title : '学生信息',
+		field : 'name',
 	}, {
 		title : '班级',
 		field : 'classid',
@@ -154,11 +270,27 @@ function operation(value, row, index) {
 			 	+ row.phone
 			 	+ "&apos;,&apos;"
 			 	+ row.classid
-			 	+ "&apos;)'>修改</button>"
+			 	+ "&apos;)'>修改</button><button id = 'del' class='btn btn-sm btn-info' data-toggle='modal' data-target='#classesModalTable' onclick='classes(&apos;"
+			 	+ row.classid
+			 	+ "&apos;)'>查看班级</button>"
 	return htm;
 }
+//查看班级
+/* function classes(classid){
+	var classes = {"classid":classid};
+	var jsonData = JSON.stringify(classes);
+		$.ajax({
+			
+		})
+	
+} */
+
+/* function classes(classid){
+	document.getElementById('classid100').value=classid;
+} */
+
  
- 
+//删除 
  function del(stuid){
 	 	var del = {"stuid":stuid};
 		var jsonData = JSON.stringify(del);
@@ -288,7 +420,6 @@ $('#addStu').click(function(){
 </script>
 
 
-
 <div id="modalTableAddCourse" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -350,6 +481,12 @@ $('#addStu').click(function(){
     </div>
   </div>
 </div>
+
+
+
+
+
+
 
     <div>
     <button class = "btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTableAddStu">添加学生</button>

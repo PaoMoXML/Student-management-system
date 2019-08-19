@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.Pojo.StudentD;
 import com.Pojo.TeacherD;
 import com.Service.TeacherdService;
 import com.alibaba.fastjson.JSONObject;
@@ -114,6 +113,12 @@ public class TeacherdController {
 		return json.toJSONString();
 	}
 
+	/**
+	 *<p>Title: updateTeaInfo</p>
+	 *<p>Description:修改教师信息 </p>
+	 * @param record
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/updateTeaInfo")
 	public String updateTeaInfo(@RequestBody TeacherD record) {
@@ -123,6 +128,26 @@ public class TeacherdController {
 			json.put("key","success");
 		}else {
 			json.put("key","error");
+		}
+		return json.toJSONString();
+		
+	}
+	
+	/**
+	 *<p>Title: addTea</p>
+	 *<p>Description: 添加教师</p>
+	 * @param record
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/addTea")
+	public String addTea(@RequestBody TeacherD record) {
+		int a = teacherdService.insert(record);
+		JSONObject json = new JSONObject();
+		if(a == 1) {
+			json.put("key", "success");
+		}else {
+			json.put("key", "error");
 		}
 		return json.toJSONString();
 		
