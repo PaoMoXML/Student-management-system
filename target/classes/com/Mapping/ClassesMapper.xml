@@ -196,4 +196,29 @@
     
   </resultMap>
   
+  
+   <select id="selectClasses2" resultMap="classesResultMap3">
+  select * from classes c,student_d studentD where c.classid = studentD.classid and c.classid = #{classid}
+  </select>
+  
+  <resultMap type="com.Pojo.Classes" id="classesResultMap3">
+  <id property = "id" column="id"/>
+  <result property = "courseid" column="courseid"/>
+  <result property = "student_d" column="studentD"/>
+  <collection property="student_d" column = "id" resultMap="BaseResultMap22">
+  	<id property = "id" column = "id"/>
+  	<result property = "name" column = "name"/>
+  	<result property = "age" column="age"/>
+  	<result property = "phone" column="phone"/>
+  </collection>
+  </resultMap>
+  
+    <resultMap id="BaseResultMap22" type="com.Pojo.TeacherD">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="teaid" jdbcType="VARCHAR" property="teaid" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+  </resultMap>
+  
 </mapper>

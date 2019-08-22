@@ -32,13 +32,13 @@ $(document).ready(function(){
 		data:jsonData,
 		dataType:"json",
         contentType : "application/json;charset=UTF-8",
-        success: function(result){
-        	 console.log(result.studentD);
-        	 document.getElementById("stuid1").innerHTML = result.studentD.stuid;
-        	 document.getElementById("name1").innerHTML = result.studentD.name;
-        	 document.getElementById("age1").innerHTML = result.studentD.age;
-        	 document.getElementById("phone1").innerHTML = result.studentD.phone;
-        	 document.getElementById("classid1").innerHTML = result.studentD.classid;
+        success: function(data){
+        	 console.log(data.studentD);
+        	 document.getElementById("stuid1").innerHTML = data.studentD.stuid;
+        	 document.getElementById("name1").innerHTML = data.studentD.name;
+        	 document.getElementById("age1").innerHTML = data.studentD.age;
+        	 document.getElementById("phone1").innerHTML = data.studentD.phone;
+        	 document.getElementById("classid1").innerHTML = data.studentD.classid;
         	},
     	error: function(result) {
              console.log(result);

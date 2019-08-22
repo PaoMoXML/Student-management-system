@@ -77,6 +77,22 @@ public class ClassesController {
 		json.put("StuInfo", cList);
 		return json.toJSONString();
 	}
+	
+	/**
+	 *<p>Title: seeClasses2</p>
+	 *<p>Description:(框架)管理员用查询班级信息 </p>
+	 * @param record
+	 * @return
+	 */
+	@RequestMapping(value = "/seeClasses4")
+	public ModelAndView seeClasses4(Classes record) {
+		ModelAndView mav = new ModelAndView();
+		List<Classes> cList = new ArrayList<>();
+		cList =	classesService.selectClasses(record);
+		mav.addObject("classesInfo",cList);
+		mav.setViewName("managerStudent");
+		return mav;
+	}
 
 
 

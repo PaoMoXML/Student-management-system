@@ -33,6 +33,23 @@ public interface CourseService {
      * @return
      */
     int insert(Course record);
+    
+    
+    /**
+     *<p>Title: studentSelectClass1</p>
+     *<p>Description: 分页查询（框架）</p>
+     * @param record
+     * @return
+     */
+    List<Course> studentSelectClass1(Course record);
+    
+    /**
+     *<p>Title: getTotal1</p>
+     *<p>Description: 分页查询总数（框架）</p>
+     * @param record
+     * @return
+     */
+    int getTotal1(Course record);
 
 
 }

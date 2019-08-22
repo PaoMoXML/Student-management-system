@@ -228,4 +228,35 @@
   	</where>
   </select>
   
+<!--   课程查询  分页-->
+    <select id="studentSelectClass1" resultMap = "BaseResultMap">
+  select * from course
+  	<where>
+  		<if test="courseName != null and courseName != ''">
+  		and courseName = #{courseName}
+  		</if>
+  		<if test="teacherName != null and teacherName != ''">
+  		and teacherName = #{teacherName}
+  		</if>
+  		<if test="place != null and place != ''">
+  		and place = #{place}
+  		</if>
+  	</where>
+  	LIMIT #{offset},#{limit}
+  </select>
+  
+  <!-- 	获取总数 -->
+	<select id="getTotal1" resultType="int">
+	SELECT count(1) FROM course WHERE 1 = 1
+  		<if test="courseName != null and courseName != ''">
+  		and courseName = #{courseName}
+  		</if>
+  		<if test="teacherName != null and teacherName != ''">
+  		and teacherName = #{teacherName}
+  		</if>
+  		<if test="place != null and place != ''">
+  		and place = #{place}
+  		</if>
+</select>
+  
 </mapper>

@@ -57,4 +57,20 @@ public interface CourseMapper {
      * @return
      */
     List<Course> studentSelectClass(Course record);
+    
+    /**
+     *<p>Title: studentSelectClass2</p>
+     *<p>Description: 课程查询（框架）</p>
+     * @param record
+     * @return
+     */
+    List<Course> studentSelectClass1(Course record);
+    
+    /**
+     *<p>Title: total</p>
+     *<p>Description: 课程查询（框架）</p>
+     * @param record
+     * @return
+     */
+    int getTotal1(Course record);
 }

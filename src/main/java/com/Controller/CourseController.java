@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.Pojo.Course;
 import com.Service.CourseService;
 import com.alibaba.fastjson.JSONObject;
+import com.util.PageHelper2;
 
 /**
  * <p>Title: CourseController</p>
@@ -49,6 +50,33 @@ public class CourseController {
 		
 	}
 	
+	/**
+	 *<p>Title: seeCourse</p>
+	 *<p>Description: 管理员查看课程</p>
+	 * @param record
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/seeCourse")
+	public  PageHelper2<Course> seeCourse(@RequestBody Course record){
+		PageHelper2<Course> pagehelper2 = new PageHelper2<Course>();
+		Integer total1 = courseService.getTotal1(record);
+		pagehelper2.setTotal(total1);
+		List<Course> cl = courseService.studentSelectClass1(record);
+		pagehelper2.setRows(cl);
+		return pagehelper2;
+	}
+	
+	
+	
+	
+	
+	/**
+	 *<p>Title: insertCourse</p>
+	 *<p>Description: 添加课程</p>
+	 * @param record
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/insertCourse")
 	public String insertCourse(@RequestBody Course record) {

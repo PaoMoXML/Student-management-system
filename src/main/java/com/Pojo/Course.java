@@ -2,7 +2,9 @@ package com.Pojo;
 
 import java.util.Date;
 
-public class Course {
+import com.util.page2;
+
+public class Course extends page2{
     private Integer id;
 
     private String courseName;

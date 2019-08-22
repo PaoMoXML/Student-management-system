@@ -49,6 +49,30 @@ public class CourseServiceImpl implements CourseService{
 	public int insert(Course record) {
 		return courseMapper.insert(record);
 	}
+
+	/**
+	 * <p>Title: studentSelectClass1</p>
+	 * <p>Description: </p>
+	 * @param record
+	 * @return
+	 * @see com.Service.CourseService#studentSelectClass1(com.Pojo.Course)
+	 */
+	@Override
+	public List<Course> studentSelectClass1(Course record) {
+		return courseMapper.studentSelectClass1(record);
+	}
+
+	/**
+	 * <p>Title: getTotal1</p>
+	 * <p>Description: </p>
+	 * @param record
+	 * @return
+	 * @see com.Service.CourseService#getTotal1(com.Pojo.Course)
+	 */
+	@Override
+	public int getTotal1(Course record) {
+		return courseMapper.getTotal1(record);
+	}
 	
 
 }

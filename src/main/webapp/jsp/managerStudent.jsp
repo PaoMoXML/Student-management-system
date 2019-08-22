@@ -20,6 +20,10 @@
 <script src="../js/bootstrap-table.js"></script>
 <script src="../js/bootstrap-table-zh-CN.js"></script>
 
+<!-- 时间 -->
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-datetimepicker.min.css" />
+
 <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
 <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
 </head>
@@ -66,7 +70,7 @@
         </button>
       </div>
       <div class="modal-body">    
-      姓名<input type="hidden" class = "form-control" id = "stuid2"> 
+      <input type="hidden" class = "form-control" id = "stuid2"> 
      姓名<input type="text" class = "form-control" id = "name2">
      年龄<input type="text" class = "form-control" id = "age2">
      电话<input type="text" class = "form-control" id = "phone2">
@@ -130,7 +134,7 @@ function classes(classid){
 		
 $.ajax({
 		type:"post",
-		url:"${pageContext.request.contextPath}/classes/seeClasses3?classid="+classid,
+		url:"${pageContext.request.contextPath}/classes/seeClasses2?classid="+classid,
 		dataType:"json",
         contentType : "application/json;charset=UTF-8",
         success: function(result){
@@ -238,8 +242,8 @@ $('#mytab').bootstrapTable({
 		title : '姓名',
 		field : 'name',
 	}, {
-		title : '学生信息',
-		field : 'name',
+		title : '年龄',
+		field : 'age',
 	}, {
 		title : '班级',
 		field : 'classid',
@@ -315,7 +319,7 @@ function operation(value, row, index) {
 			});
  }
  //将数据显示倒修改框中
- function showchange(stuid,name,age,classid,phone){
+ function showchange(stuid,name,age,phone,classid){
 	 document.getElementById('stuid2').value=stuid;
 	 document.getElementById('phone2').value=phone;
 	 document.getElementById("name2").value=name;
@@ -409,6 +413,7 @@ $('#addStu').click(function(){
         contentType : "application/json;charset=UTF-8",
         success: function(result){
                console.log(result);
+               
            },
            error: function(result) {
                console.log(result);
@@ -420,78 +425,12 @@ $('#addStu').click(function(){
 </script>
 
 
-<div id="modalTableAddCourse" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">添加课程</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <label for="inputstu" class="sr-only">STUID</label>
-		课程名<input type = "text" name = "courseName" id = "courseName" class = "form-control" required="">
-		教师名<input type = "text" name = "teacherName" id = "teacherName" class = "form-control" required="">
-		上课地点<input type = "text" name = "place" id = "place" class = "form-control" required="">
-		上课时间<input type = "text" name = "time" id = "time" class = "form-control" required="" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())%>">
-		
-		
-<%
-   Date dNow = new Date( );
-   SimpleDateFormat ft = 
-   new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
-   out.print( "<h2 align=\"center\">" + ft.format(dNow) + "</h2>");
-%>
-  </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id ="addCourse">添加</button>
-      </div>
-      
-      <script type="text/javascript">
-      
-	$('#addCourse').click(function(){
-
-			var url = "${pageContext.request.contextPath}/course/insertCourse";
-			var courseName = document.getElementById('courseName').value; 
-			var teacherName = document.getElementById('teacherName').value; 
-			var place = document.getElementById('place').value; 
-			var time = document.getElementById('time').value;
-			var updates = {"courseName":courseName,"teacherName":teacherName,"place":place,"time":time};
-			var jsonData = JSON.stringify(updates);
-
-			$.ajax({
-				type:"post",
-				url:url,
-				data:jsonData,
-				dataType:"json",
-	            contentType : "application/json;charset=UTF-8",
-	            success: function(result){
-	                   console.log(result);
-	               },
-	               error: function(result) {
-	                   console.log(result);
-	               },
-			});
-
-	});
-</script> 
-      
-      
-    </div>
-  </div>
-</div>
-
-
-
 
 
 
 
     <div>
     <button class = "btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTableAddStu">添加学生</button>
-    <button class = "btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTableAddCourse">添加课程</button>
-    <a href="" class = "btn btn-sm btn-primary">删除课程</a>
     </div>
 
 

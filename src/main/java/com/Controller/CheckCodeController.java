@@ -77,4 +77,5 @@ public class CheckCodeController {
          int b=random.nextInt(256);
         return new Color(r,g,b);
 	}
+	
 }
