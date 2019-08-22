@@ -106,9 +106,6 @@ $('#mytab').bootstrapTable({
 	}, {
 		title : '年龄',
 		field : 'age',
-	}, {
-		title : '图片',
-		field : 'pic',
 	},{
 		title : '操作',
 		formatter : operation,//对资源进行操作
@@ -125,7 +122,7 @@ function formatSex(value, row, index) {
 function operation(value, row, index) {
 	var htm = "<button id = 'del' class='btn btn-sm btn-danger' onclick='del(&apos;"
 	 	+ row.teaid
-	 	+ "&apos;)'>删除</button><button class = 'btn btn-sm btn-warning' data-toggle='modal' data-target='#changeModalTable' onclick = 'showchange(&apos;"
+	 	+ "&apos;)'>删除</button>&nbsp;&nbsp;<button class = 'btn btn-sm btn-warning' data-toggle='modal' data-target='#changeModalTable' onclick = 'showchange(&apos;"
 	 	+ row.id
 	 	+ "&apos;,&apos;"
 	 	+ row.teaid

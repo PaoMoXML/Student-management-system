@@ -17,6 +17,8 @@
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="${pageContext.request.contextPath}/jsp/managerStudent.jsp"target="right">学生查询</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/managerCourse.jsp"target="right">课程查询</a></li>
+            
           </ul>
   </div> 
         

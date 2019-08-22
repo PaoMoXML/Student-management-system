@@ -29,7 +29,7 @@
         查询条件
     </div>
     <div class="panel-body form-group" style="margin-bottom:0px;">
-        <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">姓名：</label>
+        <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">课程：</label>
         <div class="col-sm-2">
             <input type="text" class="form-control" name="courseName" id="search_name"/>
         </div>
@@ -83,6 +83,7 @@ $('#mytab').bootstrapTable({
 	}, {
 		title : '上课时间',
 		field : 'time',
+		formatter : jsonDateFormat,
 	}, {
 		title : '操作',
 		formatter : operation,//对资源进行操作
@@ -99,7 +100,7 @@ function formatSex(value, row, index) {
 function operation(value, row, index) {
 	var htm = "<button id = 'del' class='btn btn-sm btn-danger' onclick='del(&apos;"
 	 	+ row.id
-	 	+ "&apos;)'>删除</button><button class = 'btn btn-sm btn-warning' data-toggle='modal' data-target='#changeModalTable' onclick = 'showchange(&apos;"
+	 	+ "&apos;)'>删除</button>&nbsp;&nbsp;<button class = 'btn btn-sm btn-warning' data-toggle='modal' data-target='#changeModalTable' onclick = 'showchange(&apos;"
 	 	+ row.id
 	 	+ "&apos;,&apos;"
 	 	+ row.courseName
@@ -122,11 +123,27 @@ $('#search_btn').click(function() {
 
 
 
+ function jsonDateFormat(jsonDate) {
+            //json日期格式转换为正常格式
+            var jsonDateStr = jsonDate.toString();//此处用到toString（）是为了让传入的值为字符串类型，目的是为了避免传入的数据类型不支持.replace（）方法
+            try {
+                var k = parseInt(jsonDateStr.replace("/Date(", "").replace(")/", ""), 10);
+                if (k < 0) 
+                    return null;
 
-
-
-
-
+                var date = new Date(parseInt(jsonDateStr.replace("/Date(", "").replace(")/", ""), 10));
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+                var milliseconds = date.getMilliseconds();
+                return date.getFullYear() + "-" + month + "-" + day ;
+            }
+            catch (ex) {
+                return "时间格式转换错误";
+            }
+};
 
 
 
@@ -154,6 +171,7 @@ $('#search_btn').click(function() {
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>  
       </span>  
     </div>  
+
     
 
 
@@ -161,6 +179,7 @@ $('#search_btn').click(function() {
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id ="addCourse">添加</button>
       </div>
+
       
       <script type="text/javascript">
       
@@ -207,6 +226,11 @@ $('#search_btn').click(function() {
     </div>
   </div>
 </div>
+
+
+
+
+
 
 
 

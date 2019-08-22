@@ -95,25 +95,50 @@
       </div>
       <div class="modal-body" >
 		<!-- <table id="table2" class="table table-striped table-bordered table-hover"></table> -->
-		<table  class = "table">
-	    <c:forEach items="${classesInfo}" var="ci" varStatus="st">
-	    <tr>
-	    	<td>班级id：${ci.classid}</td>
-		    	<tr>
-		    	<td>姓名</td>
-		    	<td>年龄</td>
-		    	<td>电话</td>
-		    	</tr>
-		    	<c:forEach items="${ci.studentd}" var="cs" varStatus="st">
-		    	<tr>
-		    	<td>${cs.name}</td>
-		    	<td>${cs.age}</td>
-		    	<td>${cs.phone}</td>
-		    	</tr>
-		    		
-		    	</c:forEach>
-	    </c:forEach>
-</table>
+		<table  class = "table" id = "table100">
+		<tr>
+			<td>姓名</td>
+			<td>班级</td>
+			<td>年龄</td>
+			<td>电话</td>
+		</tr>
+		</table>
+	<script type="text/javascript">
+
+	
+	function classes(classid){
+		console.log(classid);
+			
+	$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/classes/seeClasses3?classid="+classid,
+			dataType:"json",
+	        contentType : "application/json;charset=UTF-8",
+	        success: function(data){
+	            var x = data.StuInfo[0].studentd.length;
+	        	 $("#table100 tr:not(:first)").html("")  
+	        	for(var i = 0;i<x;i++){
+	        		var stu = data.StuInfo[0].studentd[i];
+	        		var tbBody = "";
+	        		tbBody = "<tr>" +
+	        				"</tr>"+
+	        				"<tr>" + 
+	        					"<td>"+stu.name+"</td>"+
+	        					"<td>"+stu.classid +"</td>"+
+	        					"<td>"+stu.age+"</td>"+
+	        					"<td>"+stu.phone +"</td>"+
+	        				"</tr>";
+	        		$("#table100").append(tbBody);
+	        	}
+	        	
+
+	           },
+	           error: function(data) {
+	               console.log(data);
+	           },
+		});
+	}
+	</script>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -128,27 +153,7 @@
 <script>
 
 
-function classes(classid){
-	console.log(classid);
-	
-		
-$.ajax({
-		type:"post",
-		url:"${pageContext.request.contextPath}/classes/seeClasses2?classid="+classid,
-		dataType:"json",
-        contentType : "application/json;charset=UTF-8",
-        success: function(result){
-            console.log(result);
-                        if (result.key == "success") {
-                            swal('提示', "删除成功", 'success');
-                        } else {
-                            swal('提示', "删除失败", 'error');
-                        }
-           },
-           error: function(result) {
-               console.log(result);
-           },
-	});
+
 /* 	
 $('#table2').bootstrapTable('destroy').bootstrapTable({
 	method : 'post',
@@ -194,7 +199,7 @@ $('#table2').bootstrapTable('destroy').bootstrapTable({
 	}]
 })
  */
-}
+
 </script>
 
 
@@ -247,6 +252,9 @@ $('#mytab').bootstrapTable({
 	}, {
 		title : '班级',
 		field : 'classid',
+	}, {
+		title : '电话',
+		field : 'phone',
 	},{
 		title : '操作',
 		field : 'id',
@@ -264,7 +272,7 @@ function formatSex(value, row, index) {
 function operation(value, row, index) {
 	var htm = "<button id = 'del' class='btn btn-sm btn-danger' onclick='del(&apos;"
 			 	+ row.stuid
-			 	+ "&apos;)'>删除</button><button class = 'btn btn-sm btn-warning' data-toggle='modal' data-target='#changeModalTable' onclick = 'showchange(&apos;"
+			 	+ "&apos;)'>删除</button>&nbsp;&nbsp;<button class = 'btn btn-sm btn-warning' data-toggle='modal' data-target='#changeModalTable' onclick = 'showchange(&apos;"
 			 	+ row.stuid
 			 	+ "&apos;,&apos;"
 			 	+ row.name
@@ -274,7 +282,7 @@ function operation(value, row, index) {
 			 	+ row.phone
 			 	+ "&apos;,&apos;"
 			 	+ row.classid
-			 	+ "&apos;)'>修改</button><button id = 'del' class='btn btn-sm btn-info' data-toggle='modal' data-target='#classesModalTable' onclick='classes(&apos;"
+			 	+ "&apos;)'>修改</button>&nbsp;&nbsp;<button id = 'del' class='btn btn-sm btn-info' data-toggle='modal' data-target='#classesModalTable' onclick='classes(&apos;"
 			 	+ row.classid
 			 	+ "&apos;)'>查看班级</button>"
 	return htm;
@@ -334,7 +342,7 @@ function operation(value, row, index) {
 	 var age = document.getElementById("age2").value;
 	 var classid = document.getElementById("classid2").value;
 	 
-		var changes = {"stuid":stuid,"name":name,"age":age,"classid":classid};
+		var changes = {"stuid":stuid,"name":name,"age":age,"classid":classid,"phone":phone};
 		var jsonData = JSON.stringify(changes);
 			$.ajax({
 				type:"post",
